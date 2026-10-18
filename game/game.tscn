@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://dhvmbiwsac7l8"]
+
+[ext_resource type="Script" uid="uid://doawatm4utr6l" path="res://game/game.gd" id="1_game"]
+[ext_resource type="Script" uid="uid://dvd7wv4ikenp6" path="res://game/placeholder.gd" id="2_placeholder"]
+[ext_resource type="PackedScene" path="res://menus/pause_menu.tscn" id="3_pause"]
+
+[node name="Game" type="Node" unique_id=52402375]
+script = ExtResource("1_game")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1729190725]
+
+[node name="Placeholder" type="Control" parent="HUD" unique_id=395068919]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_placeholder")
+
+[node name="Center" type="CenterContainer" parent="HUD/Placeholder" unique_id=1257351280]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Content" type="VBoxContainer" parent="HUD/Placeholder/Center" unique_id=1577383174]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Hint" type="Label" parent="HUD/Placeholder/Center/Content" unique_id=1307393454]
+layout_mode = 2
+text = "Ton jeu ici !
+(supprime le nœud Placeholder quand tu commences)
+Échap / Start : pause"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="HUD/Placeholder/Center/Content" unique_id=1977006542]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Score : 0"
+horizontal_alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="HUD/Placeholder/Center/Content" unique_id=1873501465]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="WinButton" type="Button" parent="HUD/Placeholder/Center/Content/Buttons" unique_id=2002916919]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Gagner"
+
+[node name="LoseButton" type="Button" parent="HUD/Placeholder/Center/Content/Buttons" unique_id=389887774]
+layout_mode = 2
+text = "Perdre"
+
+[node name="ScoreButton" type="Button" parent="HUD/Placeholder/Center/Content/Buttons" unique_id=1991310015]
+layout_mode = 2
+text = "+10 points"
+
+[node name="PauseMenu" parent="." unique_id=2007519328 instance=ExtResource("3_pause")]
+
+[connection signal="pressed" from="HUD/Placeholder/Center/Content/Buttons/WinButton" to="HUD/Placeholder" method="_on_win_button_pressed"]
+[connection signal="pressed" from="HUD/Placeholder/Center/Content/Buttons/LoseButton" to="HUD/Placeholder" method="_on_lose_button_pressed"]
+[connection signal="pressed" from="HUD/Placeholder/Center/Content/Buttons/ScoreButton" to="HUD/Placeholder" method="_on_score_button_pressed"]

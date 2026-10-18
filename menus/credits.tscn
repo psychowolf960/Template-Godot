@@ -1,0 +1,60 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://menus/credits.gd" id="1_script"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.11, 0.12, 0.18, 1)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Content" type="VBoxContainer" parent="Center"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Title" type="Label" parent="Center/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 56
+text = "Crédits"
+horizontal_alignment = 1
+
+[node name="CreditsText" type="Label" parent="Center/Content"]
+layout_mode = 2
+text = "Jeu créé en 4 jours pour la [NOM DE LA JAM]
+
+Game design : Prénom Nom
+Programmation : Prénom Nom
+Graphismes : Prénom Nom
+Musique et sons : Prénom Nom
+Sons d'interface : Kenney (kenney.nl)
+
+Fait avec Godot Engine (godotengine.org)"
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="Center/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Retour"
+
+[connection signal="pressed" from="Center/Content/BackButton" to="." method="_on_back_button_pressed"]
